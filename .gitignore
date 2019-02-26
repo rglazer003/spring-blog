@@ -26,3 +26,6 @@ HELP.md
 /build/
 
 src/main/resources/application.properties
+
+*Config.java
+**Config.java

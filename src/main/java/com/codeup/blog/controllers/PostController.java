@@ -9,9 +9,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class PostController {
     @GetMapping("/posts")
-    @ResponseBody
-    public String index(){
-        return "Here is where you will see all the posts";
+    public String posts(){
+        return "posts";
     }
 
     @GetMapping("/posts/{id}")

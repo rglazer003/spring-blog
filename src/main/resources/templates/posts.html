@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header :: header('BLOG')">
-
+<head th:replace="fragments/header :: header('POSTS')">
 </head>
 <body>
     <div th:replace="fragments/navbar :: navbar"></div>
-    <h1 id="test">It's Working</h1>
+    <h1>Working</h1>
 
-    <a th:href="@{/dice-roll}">Test Dice Roll</a>
     <div th:replace="fragments/scripts :: scripts"></div>
 </body>
 </html>

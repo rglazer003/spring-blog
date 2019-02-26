@@ -1,0 +1,12 @@
+body{
+    background-color: gray;
+}
+
+nav>ul>li {
+    list-style-type: none;
+    display: inline;
+}
+
+a {
+    color: blue;
+}
