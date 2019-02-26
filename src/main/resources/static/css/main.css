@@ -10,3 +10,10 @@ nav>ul>li {
 a {
     color: blue;
 }
+
+.hrFix {
+    height: 2px;
+    border: none;
+    color: black;
+    background-color: black;
+}

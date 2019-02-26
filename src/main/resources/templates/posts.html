@@ -5,6 +5,12 @@
 <body>
     <div th:replace="fragments/navbar :: navbar"></div>
     <h1>Working</h1>
+    <hr/>
+    <div th:each="post : ${posts}">
+        <h3><span th:text="${post.title}"></span></h3>
+        <p><span th:text="${post.post}"></span></p>
+        <hr class="hrFix"/>
+    </div>
 
     <div th:replace="fragments/scripts :: scripts"></div>
 </body>

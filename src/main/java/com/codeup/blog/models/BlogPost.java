@@ -1,15 +1,17 @@
-public class Post {
+package com.codeup.blog.models;
+
+public class BlogPost {
 
     private String title;
     private String post;
     private long id;
 
-    public Post (String title, String post){
+    public BlogPost(String title, String post){
         this.title = title;
         this.post = post;
     }
 
-    public Post (String title, String post, long id){
+    public BlogPost(String title, String post, long id){
         this.title = title;
         this.post = post;
         this.id = id;
