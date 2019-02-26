@@ -21,9 +21,18 @@ public class PostController {
     }
 
     @GetMapping("/posts/{id}")
-    @ResponseBody
-    public String post(@PathVariable long id){
-        return "Here is where you would see post # " + id;
+    public String post(@PathVariable long id, Model model)
+    {
+        System.out.println(id);
+        boolean check = TestPosts.idCheck(id);
+        if (check){
+            BlogPost post = TestPosts.findByID(id);
+            System.out.println(post.getTitle());
+            model.addAttribute("post", post);
+        }
+        model.addAttribute("id", id);
+        model.addAttribute("check", check);
+        return "viewPost";
     }
 
     @GetMapping("/posts/create")

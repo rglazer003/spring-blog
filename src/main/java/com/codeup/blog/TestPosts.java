@@ -14,4 +14,29 @@ public class TestPosts {
         posts.add(post2);
         return posts;
     }
+
+    public static BlogPost findByID (long id){
+        BlogPost specPost = null;
+        List<BlogPost> checker = test();
+        for (BlogPost post : checker){
+            if (post.getId()==id){
+                specPost = post;
+            }
+        }
+        System.out.println(specPost.getTitle());
+        return specPost;
+    }
+    public static boolean idCheck(long id){
+        List<BlogPost> checker = test();
+        boolean result = false;
+        for (BlogPost post : checker){
+            long specID = post.getId();
+            if (specID == id){
+                result = true;
+                break;
+            }
+        }
+        return result;
+    }
 }
+

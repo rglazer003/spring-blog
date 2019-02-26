@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header('POST')">
+</head>
+<body>
+    <div th:replace="fragments/navbar :: navbar"></div>
+    <hr/>
+    <h1 th:if="${!check}">POST NOT FOUND</h1>
+    <div th:if="${check}">
+        <h3><span th:text="${post.title}"></span></h3>
+        <p><span th:text="${post.post}"></span></p>
+    </div>
+
+    <div th:replace="fragments/scripts :: scripts"></div>
+</body>
+</html>
