@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+</head>
+<body>
+    <div id="correct" th:if="${check}">
+        <h1>CORRECT</h1>
+        <p>YOUR GUESS: <span th:text="${guess}" /></p>
+        <p>DICE ROLL: <span th:text="${roll}" /></p>
+    </div>
+
+    <div id="incorrect" th:if="${!check}">
+        <h1>INCORRECT</h1>
+        <p>YOUR GUESS: <span th:text="${guess}" /></p>
+        <p>DICE ROLL: <span th:text="${roll}" /></p>
+    </div>
+</body>
+</html>

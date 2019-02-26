@@ -1,12 +1,18 @@
 package com.codeup.blog.controllers;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Random;
+
 @Controller
+
 public class MathController {
+    Random rand = new Random();
+
     @GetMapping("/add/{first}/and/{second}")
     @ResponseBody
     public String add(@PathVariable int first, @PathVariable int second){
@@ -33,5 +39,21 @@ public class MathController {
     public String divide(@PathVariable int first, @PathVariable int second){
         int sum = first/second;
         return first + " divided by " + second + " is " + sum;
+    }
+
+    @GetMapping("/dice-roll")
+    public String start(){
+        return "dice-roll";
+    }
+
+    @GetMapping("/dice-roll/{guess}")
+    public String guess(@PathVariable int guess, Model model){
+        int roll = rand.nextInt(6)+1;
+        System.out.println(roll);
+        boolean check = roll == guess;
+        model.addAttribute("guess", guess);
+        model.addAttribute("roll", roll);
+        model.addAttribute("check", check);
+        return "check";
     }
 }
