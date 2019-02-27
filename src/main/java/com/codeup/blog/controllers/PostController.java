@@ -1,33 +1,44 @@
 package com.codeup.blog.controllers;
 
+import com.codeup.blog.BlogPostRepository;
 import com.codeup.blog.TestPosts;
 import com.codeup.blog.models.BlogPost;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @Controller
 public class PostController {
+
+    private final BlogPostRepository blogPostDao;
+
+    public PostController(BlogPostRepository blogPostDao){
+        this.blogPostDao = blogPostDao;
+    }
+
     @GetMapping("/posts")
     public String posts(Model model){
-        List<BlogPost> posts = TestPosts.test();
-        model.addAttribute("posts", posts);
+//        List<BlogPost> posts = TestPosts.test();
+
+        model.addAttribute("posts", blogPostDao.findAll());
         return "posts";
     }
 
     @GetMapping("/posts/{id}")
     public String post(@PathVariable long id, Model model)
     {
-        System.out.println(id);
-        boolean check = TestPosts.idCheck(id);
+//        boolean check = TestPosts.idCheck(id);
+//        if (check){
+//            BlogPost post = TestPosts.findByID(id);
+//            System.out.println(post.getTitle());
+//            model.addAttribute("post", post);
+//        }
+
+        boolean check = idCheckSQL(id);
         if (check){
-            BlogPost post = TestPosts.findByID(id);
-            System.out.println(post.getTitle());
+            BlogPost post = blogPostDao.findOne(id);
             model.addAttribute("post", post);
         }
         model.addAttribute("id", id);
@@ -45,5 +56,30 @@ public class PostController {
     @ResponseBody
     public String postCreate(){
         return "This would be the result of submitting a new post";
+    }
+
+    @GetMapping("/posts/delete/{id}")
+    public String delete(@PathVariable long id, Model model){
+        model.addAttribute(id);
+        return "delete";
+    }
+
+    @PostMapping("posts/delete")
+    public String confirmedDelete(@RequestParam long deleteID){
+        blogPostDao.delete(deleteID);
+        return "redirect:/posts";
+    }
+
+    private boolean idCheckSQL(long id){
+        Iterable<BlogPost> checker = blogPostDao.findAll();
+        boolean result = false;
+        for (BlogPost post : checker){
+            long specID = post.getId();
+            if (specID==id){
+                result = true;
+                break;
+            }
+        }
+        return result;
     }
 }

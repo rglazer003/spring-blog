@@ -1,5 +1,6 @@
 body{
-    background-color: gray;
+    background-color: black;
+    color: white;
 }
 
 nav>ul>li {
@@ -15,5 +16,5 @@ a {
     height: 2px;
     border: none;
     color: black;
-    background-color: black;
+    background-color: white;
 }

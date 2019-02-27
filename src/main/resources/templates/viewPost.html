@@ -9,6 +9,8 @@
     <div th:if="${check}">
         <h3><span th:text="${post.title}"></span></h3>
         <p><span th:text="${post.post}"></span></p>
+        <a th:href="@{/posts/delete/{id}(id=${post.id})}">Delete</a>
+        <a href=""></a>
     </div>
 
     <div th:replace="fragments/scripts :: scripts"></div>

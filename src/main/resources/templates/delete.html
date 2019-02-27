@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header('DELETE')">
+</head>
+<body>
+    <div th:replace="fragments/navbar :: navbar"></div>
+    <form id="editForm" action="/posts/delete" method="post">
+        <div class="form-group">
+            <input type="hidden" th:value="${id}" name="deleteID"/>
+            <input type="submit" class="btn btn-block btn-primary" value="Delete?"/>
+        </div>
+    </form>
+
+    <div th:replace="fragments/scripts :: scripts"></div>
+</body>
+</html>

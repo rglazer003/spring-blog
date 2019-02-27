@@ -5,6 +5,7 @@ import com.codeup.blog.models.BlogPost;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class TestPosts {
     public static List<BlogPost> test() {
         List<BlogPost> posts = new ArrayList<>();
@@ -21,9 +22,9 @@ public class TestPosts {
         for (BlogPost post : checker){
             if (post.getId()==id){
                 specPost = post;
+                break;
             }
         }
-        System.out.println(specPost.getTitle());
         return specPost;
     }
     public static boolean idCheck(long id){
@@ -38,5 +39,7 @@ public class TestPosts {
         }
         return result;
     }
+
+
 }
 

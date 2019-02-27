@@ -1,10 +1,21 @@
 package com.codeup.blog.models;
 
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "blog_posts")
 public class BlogPost {
 
+    @Column(nullable = false, length = 100)
     private String title;
+    @Column(nullable = false, length = 3000)
     private String post;
+    @Id @GeneratedValue
     private long id;
+
+    public BlogPost() {
+    }
 
     public BlogPost(String title, String post){
         this.title = title;
