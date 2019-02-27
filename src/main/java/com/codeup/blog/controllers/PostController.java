@@ -46,18 +46,6 @@ public class PostController {
         return "viewPost";
     }
 
-    @GetMapping("/posts/create")
-    @ResponseBody
-    public String create(){
-        return "Here is where you will create posts";
-    }
-
-    @PostMapping("/posts/create")
-    @ResponseBody
-    public String postCreate(){
-        return "This would be the result of submitting a new post";
-    }
-
     @GetMapping("/posts/delete/{id}")
     public String delete(@PathVariable long id, Model model){
         model.addAttribute(id);
@@ -83,6 +71,18 @@ public class PostController {
         editPost.setTitle(title);
         editPost.setPost(body);
         blogPostDao.save(editPost);
+        return "redirect:/posts";
+    }
+
+    @GetMapping("/posts/create")
+    public String create(){
+        return "create";
+    }
+
+    @PostMapping("/posts/create")
+    public String publish(@RequestParam String title, @RequestParam String body){
+        BlogPost post = new BlogPost(title, body);
+        blogPostDao.save(post);
         return "redirect:/posts";
     }
 

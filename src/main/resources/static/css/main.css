@@ -1,18 +1,27 @@
 body{
     background-color: black;
     color: white;
+    font-family: 'Poiret One', cursive;
 }
 h1 {
     font-family: 'Exo', sans-serif;
 
 }
+
+label{
+    font-size: 25px;
+}
+
 nav>ul>li {
     list-style-type: none;
     display: inline;
+    font-family: 'ZCOOL QingKe HuangYou', cursive;
+    font-size: 20px;
+    padding-right: 10px;
 }
 
 a {
-    color: blue;
+    color: aqua;
 }
 
 .hrFix {
@@ -22,6 +31,14 @@ a {
     background-color: white;
 }
 
+
+input[type='text'] {
+    width:100%;
+}
+
+textarea {
+    width: 100%;
+}
 /*font-family: 'ZCOOL QingKe HuangYou', cursive;*/
 /*font-family: 'Exo', sans-serif;*/
 /*font-family: 'Poiret One', cursive;*/

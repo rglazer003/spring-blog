@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header('CREATE')">
+</head>
+<body>
+    <div th:replace="fragments/navbar :: navbar"></div>
+    <h1>CREATE A NEW POST</h1>
+    <div class="form-group">
+        <form id="createForm" action="/posts/create" method="post">
+            <label for="title">Title</label>
+            <br/>
+            <input type="text" id="title" name="title"/>
+            <br/>
+            <label for="body">Post</label>
+            <br/>
+            <textarea id="body" name="body" rows="10"></textarea>
+            <input type="submit" class="btn btn-block btn-primary" value="Create"/>
+        </form>
+    </div>
+
+    <div th:replace="fragments/scripts :: scripts"></div>
+</body>
+</html>
