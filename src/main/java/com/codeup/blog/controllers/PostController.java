@@ -40,16 +40,22 @@ public class PostController {
         if (check){
             BlogPost post = blogPostDao.findOne(id);
             model.addAttribute("post", post);
+            model.addAttribute("id", id);
+            model.addAttribute("check", check);
+            return "viewPost";
+        }else {
+            return "redirect:/post/error";
         }
-        model.addAttribute("id", id);
-        model.addAttribute("check", check);
-        return "viewPost";
     }
 
     @GetMapping("/posts/delete/{id}")
     public String delete(@PathVariable long id, Model model){
-        model.addAttribute(id);
-        return "delete";
+        if (idCheckSQL(id)) {
+            model.addAttribute(id);
+            return "delete";
+        }else {
+            return "redirect:/post/error";
+        }
     }
 
     @PostMapping("posts/delete")
@@ -60,9 +66,18 @@ public class PostController {
 
     @GetMapping("/posts/edit/{id}")
     public String edit(@PathVariable long id, Model model){
-        BlogPost post = blogPostDao.findOne(id);
-        model.addAttribute("post", post);
-        return "edit";
+        if (idCheckSQL(id)) {
+            BlogPost post = blogPostDao.findOne(id);
+            model.addAttribute("post", post);
+            return "edit";
+        }else {
+            return "redirect:/post/error";
+        }
+    }
+
+    @GetMapping("/post/error")
+    public String postError(){
+        return "postNotFound";
     }
 
     @PostMapping("/posts/edit")
