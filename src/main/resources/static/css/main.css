@@ -2,7 +2,10 @@ body{
     background-color: black;
     color: white;
 }
+h1 {
+    font-family: 'Exo', sans-serif;
 
+}
 nav>ul>li {
     list-style-type: none;
     display: inline;
@@ -18,3 +21,7 @@ a {
     color: black;
     background-color: white;
 }
+
+/*font-family: 'ZCOOL QingKe HuangYou', cursive;*/
+/*font-family: 'Exo', sans-serif;*/
+/*font-family: 'Poiret One', cursive;*/

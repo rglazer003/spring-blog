@@ -70,6 +70,22 @@ public class PostController {
         return "redirect:/posts";
     }
 
+    @GetMapping("/posts/edit/{id}")
+    public String edit(@PathVariable long id, Model model){
+        BlogPost post = blogPostDao.findOne(id);
+        model.addAttribute("post", post);
+        return "edit";
+    }
+
+    @PostMapping("/posts/edit")
+    public String confirmedEdit(@RequestParam String title, @RequestParam String body, @RequestParam long id){
+        BlogPost editPost = blogPostDao.findOne(id);
+        editPost.setTitle(title);
+        editPost.setPost(body);
+        blogPostDao.save(editPost);
+        return "redirect:/posts";
+    }
+
     private boolean idCheckSQL(long id){
         Iterable<BlogPost> checker = blogPostDao.findAll();
         boolean result = false;
