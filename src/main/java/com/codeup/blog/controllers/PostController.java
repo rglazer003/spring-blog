@@ -98,6 +98,7 @@ public class PostController {
         return "redirect:/posts";
     }
 
+
     private boolean idCheckSQL(long id){
         Iterable<BlogPost> checker = blogPostDao.findAll();
         boolean result = false;
