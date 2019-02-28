@@ -5,15 +5,15 @@
 <body>
     <div th:replace="fragments/navbar :: navbar"></div>
     <div class="form-group">
-    <form id="editForm" th:action="@{/posts/edit}" method="post">
+    <form id="editForm" th:action="@{/posts/edit}" th:method="post" th:object="${post}">
         <label for="title">Title</label>
         <br/>
-        <input type="text" id="title" name="title" th:value="${post.title}"/>
+        <input type="text" id="title" name="title" th:field="*{title}"/>
         <br/>
-        <label for="body">Post</label>
+        <label for="post">Post</label>
         <br/>
-        <textarea id="body" name="body" th:text="${post.post}"></textarea>
-        <input type="hidden" id="id" name="id" th:value="${post.id}"/>
+        <textarea id="post" name="post" th:field="*{post}"></textarea>
+        <input type="hidden" id="id" name="id" th:field="*{id}" th:value="${post.id}"/>
         <input type="submit" class="btn btn-block btn-primary" value="Edit"/>
     </form>
     </div>

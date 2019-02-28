@@ -1,11 +1,10 @@
 body{
     background-color: black;
     color: white;
-    font-family: 'Poiret One', cursive;
+    font-family: 'Exo', sans-serif;
 }
 h1 {
-    font-family: 'Exo', sans-serif;
-
+    font-family: 'Poiret One', cursive;
 }
 
 label{

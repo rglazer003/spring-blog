@@ -81,23 +81,20 @@ public class PostController {
     }
 
     @PostMapping("/posts/edit")
-    public String confirmedEdit(@RequestParam String title, @RequestParam String body, @RequestParam long id){
-        BlogPost editPost = blogPostDao.findOne(id);
-        editPost.setTitle(title);
-        editPost.setPost(body);
-        blogPostDao.save(editPost);
+    public String confirmedEdit(@ModelAttribute BlogPost post){
+        blogPostDao.save(post);
         return "redirect:/posts";
     }
 
     @GetMapping("/posts/create")
-    public String create(){
+    public String create(Model model){
+        model.addAttribute("blogpost", new BlogPost());
         return "create";
     }
 
     @PostMapping("/posts/create")
-    public String publish(@RequestParam String title, @RequestParam String body){
-        BlogPost post = new BlogPost(title, body);
-        blogPostDao.save(post);
+    public String publish(@ModelAttribute BlogPost blogpost){
+        blogPostDao.save(blogpost);
         return "redirect:/posts";
     }
 
