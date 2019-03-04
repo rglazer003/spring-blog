@@ -13,6 +13,8 @@ public class BlogPost {
     private String post;
     @Id @GeneratedValue
     private long id;
+    @OneToOne
+    private User user;
 
     public BlogPost() {
     }
@@ -28,6 +30,18 @@ public class BlogPost {
         this.id = id;
     }
 
+    public BlogPost(String title, String post, User user) {
+        this.title = title;
+        this.post = post;
+        this.user = user;
+    }
+
+    public BlogPost(String title, String post, User user, long id) {
+        this.title = title;
+        this.post = post;
+        this.user = user;
+        this.id = id;
+    }
     public String getPost() {
         return post;
     }
@@ -51,5 +65,14 @@ public class BlogPost {
     public void setId(long id) {
         this.id = id;
     }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
 }
 

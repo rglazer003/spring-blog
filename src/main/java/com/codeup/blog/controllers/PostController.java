@@ -2,6 +2,7 @@ package com.codeup.blog.controllers;
 
 import com.codeup.blog.BlogPostRepository;
 import com.codeup.blog.TestPosts;
+import com.codeup.blog.UserRepository;
 import com.codeup.blog.models.BlogPost;
 import com.codeup.blog.models.User;
 import com.codeup.blog.services.EmailService;
@@ -18,9 +19,12 @@ public class PostController {
 
     private final BlogPostRepository blogPostDao;
 
-    public PostController(BlogPostRepository blogPostDao, EmailService emailService){
+    private final UserRepository userDao;
+
+    public PostController(BlogPostRepository blogPostDao, EmailService emailService, UserRepository userDao){
         this.blogPostDao = blogPostDao;
         this.emailService = emailService;
+        this.userDao = userDao;
     }
 
     @GetMapping("/posts")
@@ -99,9 +103,10 @@ public class PostController {
 
     @PostMapping("/posts/create")
     public String publish(@ModelAttribute BlogPost blogpost){
-        User user  = new User("Test", "Test", "Test@test.tst");
+        User user  = userDao.findOne(1L);
+        blogpost.setUser(user);
         BlogPost saved = blogPostDao.save(blogpost);
-        emailService.prepareAndSend(user, saved, "Post made", "Post was made by " + user.getUsername() + " post # is " + saved.getId());
+        emailService.prepareAndSend(user, saved, "Post made", "Post was made by " + saved.getUser().getUsername() + " post # is " + saved.getId());
         return "redirect:/posts";
     }
 
