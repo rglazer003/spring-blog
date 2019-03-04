@@ -8,18 +8,23 @@
         <h1>REGISTER NEW USER</h1>
     <br/>
     <div class="form-group">
-        <form id="createForm" th:action="@{/register.html}" th:method="post" th:object="${user}">
+        <form id="createForm" th:action="@{/register}" th:method="post" th:object="${user}">
             <label for="username">Username</label>
             <br/>
             <input type="text" id="username" name="username" th:field="*{username}"/>
             <br/>
             <label for="password">Password</label>
             <br/>
-            <input type="password" id="password" name="password" th:field="${password}"/>
+            <input type="password" id="password" name="password" th:field="*{password}"/>
             <br/>
             <label for="verify">Verify Password</label>
             <br/>
-            <input type="password" name="verify" id="verify">
+            <input type="password" name="verify" id="verify"/>
+            <br/>
+            <label for="email">Email</label>
+            <br/>
+            <input type="text" id="email" name="email" th:field="*{email}"/>
+            <br/>
             <input type="submit" class="btn btn-block btn-primary" value="Create"/>
         </form>
     </div>
