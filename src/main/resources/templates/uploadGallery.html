@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header('GALLERY')">
+</head>
+<body>
+    <div class="row" th:replace="fragments/navbar :: navbar"></div>
+    <div th:each="upload : ${uploads}">
+        <div class="col-md-4">
+            <div class="thumbnail">
+                <a href="">
+                    <img th:src="@{/uploads/{filename}(filename=${upload.filename})}" style="width:100%"/>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

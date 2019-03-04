@@ -48,9 +48,15 @@ public class FileUploadController {
             model.addAttribute("check", true);
         } catch (IOException e) {
             e.printStackTrace();
-            model.addAttribute("message", "Oops! Something went wrong! " + e);
+            model.addAttribute("message", e);
             model.addAttribute("check", false);
         }
         return "uploadStatus";
+    }
+
+    @GetMapping("/gallery")
+    public String gallery(Model model){
+        model.addAttribute("uploads", uploadDao.findAll());
+        return "uploadGallery";
     }
 }

@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header :: header('BLOG')">
+<head th:replace="fragments/header :: header('UPLOAD RESULT')">
 
 </head>
 <body>
     <div th:replace="fragments/navbar :: navbar"></div>
     <div th:if="${check}">
-        <h1>UPLOAD SUCCESSFUL</h1>
+        <h1 style="text-align: center">UPLOAD SUCCESSFUL</h1>
         <div style="text-align: center">
-        <i style="display: inline-block" class="fas fa-check alertIcon"></i>
+            <i style="display: inline-block" class="fas fa-check alertIcon"></i>
+        </div>
+    </div>
+    <div th:unless="${check}">
+        <h1 style="text-align: center">SOMETHING WENT WRONG</h1>
+        <p style="text-align: center">ERROR MESSAGE: <span th:text="${message}"></span></p>
+        <div style="text-align: center">
+            <i style="display: inline-block" class="fas fa-times-circle alertIcon"></i>
         </div>
     </div>
     <div th:replace="fragments/scripts :: scripts"></div>
