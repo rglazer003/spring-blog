@@ -3,6 +3,8 @@ package com.codeup.blog.controllers;
 import com.codeup.blog.BlogPostRepository;
 import com.codeup.blog.TestPosts;
 import com.codeup.blog.models.BlogPost;
+import com.codeup.blog.models.User;
+import com.codeup.blog.services.EmailService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -12,10 +14,13 @@ import java.util.List;
 @Controller
 public class PostController {
 
+    private final EmailService emailService;
+
     private final BlogPostRepository blogPostDao;
 
-    public PostController(BlogPostRepository blogPostDao){
+    public PostController(BlogPostRepository blogPostDao, EmailService emailService){
         this.blogPostDao = blogPostDao;
+        this.emailService = emailService;
     }
 
     @GetMapping("/posts")
@@ -94,7 +99,9 @@ public class PostController {
 
     @PostMapping("/posts/create")
     public String publish(@ModelAttribute BlogPost blogpost){
-        blogPostDao.save(blogpost);
+        User user  = new User("Test", "Test", "Test@test.tst");
+        BlogPost saved = blogPostDao.save(blogpost);
+        emailService.prepareAndSend(user, saved, "Post made", "Post was made by " + user.getUsername() + " post # is " + saved.getId());
         return "redirect:/posts";
     }
 
