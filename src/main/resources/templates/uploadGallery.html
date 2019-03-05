@@ -5,13 +5,10 @@
 <body>
     <div class="row" th:replace="fragments/navbar :: navbar"></div>
     <div th:each="upload : ${uploads}">
-        <div class="col-md-4">
-            <div class="thumbnail">
-                <a href="">
-                    <img th:src="@{'/images/' + ${upload.filename}}" style="width:100%"/>
-                </a>
-            </div>
+        <div class="col-md-6 offset-md-3">
+            <img th:src="@{'/images/' + ${upload.filename}}" class="thumbnail" style="width:100%"/>
         </div>
     </div>
+    <div th:replace="fragments/scripts :: scripts"></div>
 </body>
 </html>

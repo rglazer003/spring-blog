@@ -1,16 +1,21 @@
 package com.codeup.blog.models;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "users")
 public class User {
+    @JsonBackReference
     @Id @GeneratedValue
     private long id;
     @Column(nullable = false, length = 50)
     private String username;
     @Column(nullable = false, length = 100)
+    @JsonIgnore
     private String password;
     @Column(nullable = false, length = 100)
     private String email;

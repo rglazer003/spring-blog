@@ -9,7 +9,7 @@
     <div th:if="${check}">
         <h3><span th:text="${post.title}"></span></h3>
         <p><span th:text="${post.post}"></span></p>
-        <p><span th:text="${post.getUser().getEmail()}"></span></p>
+        <p><span th:text="${post.user.email}"></span></p>
         <a th:href="@{/posts/delete/{id}(id=${post.id})}">Delete</a>
         <a th:href="@{/posts/edit/{id}(id=${post.id})}">Edit</a>
         <a href=""></a>

@@ -31,14 +31,26 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public String registerResult(@ModelAttribute User user, @RequestParam(name = "password") String password, @RequestParam(name = "verify") String verify, Model model){
+    public String registerResult(@ModelAttribute User user, @RequestParam(name = "password") String password, @RequestParam(name = "verify") String verify, @RequestParam(name = "username") String username, Model model){
         if (!verify.equals(password)){
             model.addAttribute("createAlert", true);
             return "register";
         }else {
-            User savedUser = userDao.save(user);
-            model.addAttribute("savedUser", savedUser);
-            return "registerResult";
+            Iterable<User> checkList = userDao.findAll();
+            boolean duplicateUsername = false;
+            for (User name : checkList){
+                if (username.toLowerCase().equalsIgnoreCase(name.getUsername())){
+                    duplicateUsername = true;
+                    break;
+                }
+            }if(duplicateUsername){
+                model.addAttribute("duplicateUsername", true);
+                return "register";
+            }else {
+                User savedUser = userDao.save(user);
+                model.addAttribute("savedUser", savedUser);
+                return "registerResult";
+            }
         }
 
     }

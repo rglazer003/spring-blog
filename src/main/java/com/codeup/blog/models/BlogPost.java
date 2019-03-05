@@ -1,6 +1,8 @@
 package com.codeup.blog.models;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 
 @Entity
@@ -14,6 +16,7 @@ public class BlogPost {
     @Id @GeneratedValue
     private long id;
     @OneToOne
+    @JsonManagedReference
     private User user;
 
     public BlogPost() {

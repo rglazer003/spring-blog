@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -108,6 +109,19 @@ public class PostController {
         BlogPost saved = blogPostDao.save(blogpost);
         emailService.prepareAndSend(user, saved, "Post made", "Post was made by " + saved.getUser().getUsername() + " post # is " + saved.getId());
         return "redirect:/posts";
+    }
+
+    @GetMapping("/posts.json")
+    public @ResponseBody List<BlogPost> postsInJSON(){
+        Iterable<BlogPost> source = blogPostDao.findAll();
+        List<BlogPost> result = new ArrayList<>();
+        source.forEach(result::add);
+        return result;
+    }
+
+    @GetMapping("/posts/ajax")
+    public String postsWithAjax(){
+        return "postsAjax";
     }
 
 
