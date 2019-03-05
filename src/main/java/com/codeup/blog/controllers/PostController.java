@@ -6,6 +6,7 @@ import com.codeup.blog.UserRepository;
 import com.codeup.blog.models.BlogPost;
 import com.codeup.blog.models.User;
 import com.codeup.blog.services.EmailService;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -104,7 +105,7 @@ public class PostController {
 
     @PostMapping("/posts/create")
     public String publish(@ModelAttribute BlogPost blogpost){
-        User user  = userDao.findOne(1L);
+        User user  = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         blogpost.setUser(user);
         BlogPost saved = blogPostDao.save(blogpost);
         emailService.prepareAndSend(user, saved, "Post made", "Post was made by " + saved.getUser().getUsername() + " post # is " + saved.getId());

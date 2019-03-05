@@ -1,19 +1,24 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
 </head>
 <body>
     <th:block th:fragment="navbar">
-    <nav>
+    <nav class="row">
         <ul>
             <li><a th:href="@{/}">Home</a></li>
-            <li><a th:href="@{/dice-roll}">Dice Roll</a></li>
             <li><a th:href="@{/posts}">Posts</a></li>
-            <li><a th:href="@{/posts/create}">Create a New Post</a></li>
-            <li><a th:href="@{/fileupload}">File Upload</a></li>
+            <li sec:authorize="isAuthenticated()"><a th:href="@{/posts/create}">Create a New Post</a></li>
+            <li sec:authorize="isAuthenticated()"><a th:href="@{/fileupload}">File Upload</a></li>
             <li><a th:href="@{/gallery}">Upload Gallery</a></li>
-            <li><a th:href="@{/register}">Register</a></li>
-            <li><a th:href="@{/login}">Login</a></li>
+            <li sec:authorize="!isAuthenticated()"><a th:href="@{/register}">Register</a></li>
+            <li sec:authorize="!isAuthenticated()"><a th:href="@{/login}">Login</a></li>
+            <li sec:authorize="isAuthenticated()">
+                <form th:action="@{/logout}" th:method="post" id="logoutForm" style="display: inline-block">
+                    <a href="#" onclick="document.getElementById('logoutForm').submit();">Logout</a>
+                </form>
+            </li>
         </ul>
     </nav>
     </th:block>
