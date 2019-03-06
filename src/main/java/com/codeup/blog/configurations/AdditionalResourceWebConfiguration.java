@@ -10,6 +10,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 public class AdditionalResourceWebConfiguration extends WebMvcConfigurerAdapter {
     @Override
     public void addResourceHandlers(final ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/uploads/**").addResourceLocations("file:uploads/");
+        registry.addResourceHandler("/public/uploads/**").addResourceLocations("file:public/uploads/");
     }
 }
