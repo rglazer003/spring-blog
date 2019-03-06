@@ -23,6 +23,11 @@ a {
     color: aqua;
 }
 
+.btnFix {
+    color: aqua !important;
+    font-size: 12px;
+}
+
 .hrFix {
     height: 2px;
     border: none;

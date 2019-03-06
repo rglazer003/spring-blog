@@ -12,7 +12,7 @@ public class User {
     @JsonBackReference
     @Id @GeneratedValue
     private long id;
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false, length = 50, unique = true)
     private String username;
     @Column(nullable = false, length = 100)
     @JsonIgnore
@@ -33,6 +33,13 @@ public class User {
         this.username = username;
         this.password = password;
         this.email = email;
+    }
+
+    public User(User copy) {
+        id = copy.id; // This line is SUPER important! Many things won't work if it's absent
+        email = copy.email;
+        username = copy.username;
+        password = copy.password;
     }
 
     public long getId() {
