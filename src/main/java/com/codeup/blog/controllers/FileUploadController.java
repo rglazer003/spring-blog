@@ -3,8 +3,10 @@ package com.codeup.blog.controllers;
 
 import com.codeup.blog.FileUploadRepository;
 import com.codeup.blog.models.Upload;
+import com.codeup.blog.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,7 +30,10 @@ public class FileUploadController {
     private String uploadPath;
 
     @GetMapping("/fileupload")
-    public String showUploadFileForm() {
+    public String showUploadFileForm(Model model) {
+        User user  = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("currentUser", user);
+        model.addAttribute("userCheck", "admin");
         return "fileUpload";
     }
 
