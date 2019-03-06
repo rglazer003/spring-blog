@@ -29,7 +29,7 @@ public class FileUploadController {
 
     @GetMapping("/fileupload")
     public String showUploadFileForm() {
-        return "fileupload";
+        return "fileUpload";
     }
 
     @PostMapping("/fileupload")
