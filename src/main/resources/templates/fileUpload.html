@@ -5,8 +5,8 @@
 </head>
 <body>
     <div th:replace="fragments/navbar :: navbar"></div>
-    <h1 th:if="${!currentUser.username.equals(userCheck)}">File upload is currently only for admin accounts, please contact an admin if you need to upload a file</h1>
-    <div th:if="${currentUser.username.equals(userCheck)}">
+    <!--<h1 th:if="${!currentUser.username.equals(userCheck)}">File upload is currently only for admin accounts, please contact an admin if you need to upload a file</h1>-->
+    <!--<div th:if="${currentUser.username.equals(userCheck)}">-->
     <form th:action="@{/fileupload}" method="post" enctype="multipart/form-data">
         <label for="file">Upload a file!</label>
         <br/>
@@ -14,7 +14,7 @@
         <br />
         <input type="submit" value="upload" />
     </form>
-    </div>
+    <!--</div>-->
     <div th:replace="fragments/scripts :: scripts"></div>
 </body>
 </html>
