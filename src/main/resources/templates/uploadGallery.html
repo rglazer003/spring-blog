@@ -6,7 +6,7 @@
     <div class="row" th:replace="fragments/navbar :: navbar"></div>
     <div th:each="upload : ${uploads}">
         <div class="col-md-6 offset-md-3">
-            <img th:src="@{'/uploads/' + ${upload.filename}}" class="thumbnail" style="width:100%"/>
+            <img th:src="@{upload.filename}" class="thumbnail" style="width:100%"/>
         </div>
     </div>
     <div th:replace="fragments/scripts :: scripts"></div>

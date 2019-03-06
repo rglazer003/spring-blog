@@ -37,6 +37,11 @@ public class FileUploadController {
         return "fileUpload";
     }
 
+    @GetMapping("/filestack")
+    public String filestack(){
+        return "filestackUpload";
+    }
+
     @PostMapping("/fileupload")
     public String saveFile(
             @RequestParam(name = "file") MultipartFile uploadedFile,

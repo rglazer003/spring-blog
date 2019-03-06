@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header('UPLOAD RESULT')">
+
+</head>
+<body>
+    <div th:replace="fragments/navbar :: navbar"></div>
+    <div class=""></div>
+    <div th:replace="fragments/scripts :: scripts"></div>
+    <script src="//static.filestackapi.com/filestack-js/1.x.x/filestack.min.js"></script>
+    <script>
+        const client = filestack.init('AsMPzKzyTr6BQWcta2RRCz');
+
+        let options = {
+            "displayMode": "inline",
+            "container": ".picker-content",
+            "maxFiles": 4,
+            "accept": [
+                "image/jpeg",
+                "image/jpg",
+                "image/png",
+                "image/bmp",
+                "image/gif",
+                "application/pdf"
+            ],
+            "storeTo": {
+                "container": "devportal-customers-assets",
+                "path": "user-uploads/",
+                "region": "us-east-1"
+            },
+            "fromSources": [
+                "local_file_system"
+            ],
+            "uploadInBackground": false
+        };
+
+        const picker = this.client.picker(options);
+        picker.open();
+    </script>
+</body>
+</html>
